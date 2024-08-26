@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .div-sele{
+            display: none;
+        }
+        .telas{
+            display: flex;
+           
+        }
+        #tela{
+            width: 80vw;
+            height: 100vh;
+            background: rgba(239, 227, 181, 0.88);
+        }
+        #tela-Design{
+            width: 20vw;
+            height: 100vh;
+            background: rgba(48, 48, 47, 0.88);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="telas">
+        <div id="tela">
+            casa de mamae
+        </div>
+        <div id="tela-Design">
+            <button onclick="criar()">criar</button>
+            <button onclick="very()">very</button>
+        </div>
+    </div>
+    
+    
+    <script>
+        var divSele = document.querySelector(".div-sele")
+        var sele = document.querySelector("#sele")
+        var tela_Design = document.querySelector("#tela-Design")
+        
+        let i = 0
+        let j = 0
+
+        var array = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+        var opcoes = ["C-Filhos","div","h1","h2","h3","h4","h5","h6","span","img","video","iframe","i","a","li","ul","p","nav",]
+
+       
+        var criar = ()=>{
+            
+            //criar na tela de designer
+            let lb = document.createElement("section")
+            lb.id = `${array[i]}`
+
+            //criar na tela
+            let s01 = document.createElement("section")
+            s01.id = `${array[i]}`
+
+            let sepaItens = document.createElement("div")
+            sepaItens.style.display = "flex"
+            sepaItens.style.justifyContent = "space-between"
+
+            let lb1 = document.createElement("label")
+            lb1.textContent = "secao"
+            lb1.style.marginRight = "90px"
+
+            let btn_E = document.createElement("button")
+            btn_E.textContent = "Editar"
+            
+            btn_E.style.top = `${lb1.top}`
+            btn_E.onclick = function(){
+                btn_A.style.display = "flex"
+                btn_F.style.display = "flex"
+                se.style.display = "flex"
+                btn_E.style.display = "none"
+                
+            }
+
+            
+            let btn_A = document.createElement("button")
+            btn_A.textContent = "Apagar"
+            btn_A.onclick = function(){
+                
+                very()
+            }
+            btn_A.style.display = "none"
+            
+            let btn_F = document.createElement("button")
+            btn_F.textContent = "Configuracao"
+            btn_F.onclick = function(){
+                
+            }
+            btn_F.style.display = "none"
+
+            let se = document.createElement("select")
+            se.style.display = "none"
+
+            for(let i = 0 ; i< opcoes .length ; i++){
+                let op = document.createElement("option")
+                op.value = opcoes[i]
+                op.textContent = opcoes[i]
+                se.appendChild(op)
+                
+            }
+            se.addEventListener("input",()=>{
+                if(se.value != "C-Filhos"){
+                    ele = []
+                    eleId = []
+                    var eleId = [`${lb.id}`,`${se.value}`]
+                    criarFilho(eleId)
+                    //var eleId = [`${lb.id}`,`${sele.value}`]
+                    //criarFilho(eleId)
+                }
+                se.value = "C-Filhos"
+                btn_A.style.display = "none"
+                btn_F.style.display = "none"
+                se.style.display = "none"
+                btn_E.style.display = "flex"
+            })
+
+
+
+            
+            tela_Design.appendChild(lb)
+            lb.appendChild(sepaItens)
+            sepaItens.appendChild(lb1)
+            sepaItens.appendChild(btn_E)
+            sepaItens.appendChild(btn_A)
+            sepaItens.appendChild(btn_F)
+            sepaItens.appendChild(se)
+            
+            //criar na tela
+            tela.appendChild(s01)
+
+            i++
+
+
+         
+            
+        }
+
+           
+
+        var very = ()=>{
+            //document.body.removeChild(lb)
+            alert("csas")
+        }
+
+       
+       
+
+        var criarFilho = (ele)=>{
+            
+
+            var dix = document.getElementById(`${ele[0]}`)
+            
+            var dcont = dix.children.length
+            alert(dcont-4)
+            
+            let lb = document.createElement(`div`)
+            lb.id = `${ele[0]}${array[dcont -4]}`
+            lb.style.marginLeft = "10px"
+
+           
+
+            let sepaItens = document.createElement("div")
+            sepaItens.style.display = "flex"
+            sepaItens.style.justifyContent = "space-between"
+            
+            let lb1 = document.createElement("label")
+            lb1.textContent = `${ele[1]}`
+
+            
+
+            let btn_E = document.createElement("button")
+            btn_E.textContent = "Editar"
+            btn_E.onclick = function(){
+                btn_A.style.display = "flex"
+                btn_F.style.display = "flex"
+                se.style.display = "flex"
+            }
+            
+
+            
+            let btn_A = document.createElement("button")
+            btn_A.textContent = "Apagar"
+            btn_A.style.display = "none"
+            btn_A.onclick = function(){
+                
+                very()
+            }
+            
+            let btn_F = document.createElement("button")
+            btn_F.textContent = "C-Filho"
+            btn_F.onclick = function(){
+                var eleId = lb.id
+                criarFilho(eleId)
+            }
+            btn_F.style.display = "none"
+
+            let se = document.createElement("select")
+            se.style.display = "none"
+
+            for(let i = 0 ; i< opcoes .length ; i++){
+                let op = document.createElement("option")
+                op.value = opcoes[i]
+                op.textContent = opcoes[i]
+                
+                se.appendChild(op)
+                
+                
+            }
+            se.addEventListener("input",()=>{
+            
+                if(se.value != "C-Filhos"){
+                    ele = []
+                    eleId = []
+                    var eleId = [`${lb.id}`,`${se.value}`,`${s01}`]
+                    criarFilho(eleId)
+                }
+                se.value = "C-Filhos"
+                btn_A.style.display = "none"
+                btn_F.style.display = "none"
+                se.style.display = "none"
+                
+            })
+
+            
+            dix.appendChild(lb)
+            lb.appendChild(sepaItens)
+            sepaItens.appendChild(lb1)
+            tela.appendChild(s01)
+            sepaItens.appendChild(btn_E)
+            sepaItens.appendChild(btn_A)
+            sepaItens.appendChild(btn_F)
+            sepaItens.appendChild(se)
+
+            i++
+
+            
+             
+        }
+
+    </script>
+</body>
+</html>
